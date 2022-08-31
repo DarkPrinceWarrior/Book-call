@@ -9,7 +9,7 @@ class Role(Base):
     role_id = Column(Integer, primary_key=True, autoincrement=True)
     role_name = Column(String(40), nullable=False, unique=True)
 
-    usertypes = relationship('Usertype', backref='role', lazy="joined",
+    users = relationship('Users', backref='role', lazy="joined",
                              cascade='all, delete')
 
     def dictionarize(self):
@@ -23,6 +23,9 @@ class Users(Base):
     __tablename__ = 'user'
 
     user_id = Column(Integer, primary_key=True, autoincrement=True)
+    login = Column(String(255), nullable=False,unique=True)
+    email = Column(String(255), nullable=False, unique=True)
+    password = Column(String(255), nullable=False)
     user_token = Column(String(255), nullable=False, unique=True)
     role_id = Column(Integer, ForeignKey('role.role_id'), nullable=False)
 

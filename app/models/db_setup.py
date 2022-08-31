@@ -5,8 +5,9 @@ import config
 from deta import Deta  # Import Deta
 from config import deta_project_key  # project key for deta
 
-engine = create_engine(f'postgresql://postgres:'
+engine = create_engine(f'mariadb+mariadbconnector://root:'
                        f'{config.password}@localhost:{config.port}/{config.db_name}')
+
 db_session = scoped_session(sessionmaker(autocommit=False,
                                          autoflush=False,
                                          bind=engine))
@@ -18,6 +19,7 @@ deta = Deta(deta_project_key)
 
 # create the db
 def init_db():
-    from app.models.entities import Role
-    from app.models.entities import Users
+    # from app.models.entities import Role
+    # from app.models.entities import Users
     Base.metadata.create_all(engine)
+
