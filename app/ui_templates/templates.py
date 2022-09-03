@@ -1,52 +1,64 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
+from PyQt5.QtGui import QIcon
+
 
 class Ui_MainWindow(object):
 
+    def __init__(self):
+        self.show_password = None
+        self.remember_me = None
+        self.cancel = None
+        self.register = None
+        self.signin = None
+        self.password = None
+        self.login = None
+        self.label_app_name = None
+
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
-        MainWindow.resize(500, 700)
+        MainWindow.resize(700, 400)
         MainWindow.setStyleSheet("background-color: #22222e")
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
-        self.label = QtWidgets.QLabel(self.centralwidget)
-        self.label.setGeometry(QtCore.QRect(50, 20, 211, 31))
+        self.label_app_name = QtWidgets.QLabel(self.centralwidget)
+        self.label_app_name.setGeometry(QtCore.QRect(50, 20, 600, 31))
         font = QtGui.QFont()
         font.setFamily("Arial Black")
-        font.setPointSize(14)
+        font.setPointSize(22)
         font.setBold(True)
         font.setWeight(75)
-        self.label.setFont(font)
-        self.label.setLayoutDirection(QtCore.Qt.LeftToRight)
-        self.label.setStyleSheet("background-color: #FFFFE0")
-        self.label.setObjectName("label")
-        self.lineEdit = QtWidgets.QLineEdit(self.centralwidget)
-        self.lineEdit.setGeometry(QtCore.QRect(90, 90, 141, 31))
-        self.lineEdit.setStyleSheet("background-color: #FFFFFF")
-        self.lineEdit.setObjectName("lineEdit")
-        self.lineEdit_2 = QtWidgets.QLineEdit(self.centralwidget)
-        self.lineEdit_2.setGeometry(QtCore.QRect(90, 130, 141, 31))
-        self.lineEdit_2.setStyleSheet("background-color: #FFFFFF")
-        self.lineEdit_2.setObjectName("lineEdit_2")
-        self.pushButton = QtWidgets.QPushButton(self.centralwidget)
-        self.pushButton.setGeometry(QtCore.QRect(30, 180, 75, 23))
-        self.pushButton.setStyleSheet("background-color: green")
-        self.pushButton.setObjectName("pushButton")
-        self.pushButton_2 = QtWidgets.QPushButton(self.centralwidget)
-        self.pushButton_2.setGeometry(QtCore.QRect(120, 180, 75, 23))
-        self.pushButton_2.setStyleSheet("background-color: grey")
-        self.pushButton_2.setObjectName("pushButton_2")
-        self.pushButton_3 = QtWidgets.QPushButton(self.centralwidget)
-        self.pushButton_3.setGeometry(QtCore.QRect(210, 180, 75, 23))
-        self.pushButton_3.setStyleSheet("background-color: red")
-        self.pushButton_3.setObjectName("pushButton_3")
-        self.checkBox = QtWidgets.QCheckBox(self.centralwidget)
-        self.checkBox.setGeometry(QtCore.QRect(100, 220, 111, 21))
-        self.checkBox.setStyleSheet("background-color: white")
-        self.checkBox.setObjectName("checkBox")
-        self.checkBox_3 = QtWidgets.QCheckBox(self.centralwidget)
-        self.checkBox_3.setGeometry(QtCore.QRect(100, 260, 111, 21))
-        self.checkBox_3.setStyleSheet("background-color: white")
-        self.checkBox_3.setObjectName("checkBox_3")
+        self.label_app_name.setFont(font)
+        self.label_app_name.setLayoutDirection(QtCore.Qt.LeftToRight)
+        self.label_app_name.setStyleSheet("background-color: #FFFFE0")
+        self.label_app_name.setObjectName("label")
+        self.login = QtWidgets.QLineEdit(self.centralwidget)
+        self.login.setGeometry(QtCore.QRect(90, 90, 400, 31))
+        self.login.setStyleSheet("background-color: #FFFFFF")
+        self.login.setObjectName("lineEdit")
+        self.password = QtWidgets.QLineEdit(self.centralwidget)
+        self.password.setGeometry(QtCore.QRect(90, 130, 400, 31))
+        self.password.setStyleSheet("background-color: #FFFFFF")
+        self.password.setObjectName("lineEdit_2")
+        self.signin = QtWidgets.QPushButton(self.centralwidget)
+        self.signin.setGeometry(QtCore.QRect(100, 180, 75, 23))
+        self.signin.setStyleSheet("background-color: green")
+        self.signin.setObjectName("pushButton")
+        self.register = QtWidgets.QPushButton(self.centralwidget)
+        self.register.setGeometry(QtCore.QRect(200, 180, 100, 23))
+        self.register.setStyleSheet("background-color: grey")
+        self.register.setObjectName("pushButton_2")
+        self.cancel = QtWidgets.QPushButton(self.centralwidget)
+        self.cancel.setGeometry(QtCore.QRect(350, 180, 75, 23))
+        self.cancel.setStyleSheet("background-color: red")
+        self.cancel.setObjectName("pushButton_3")
+        self.remember_me = QtWidgets.QCheckBox(self.centralwidget)
+        self.remember_me.setGeometry(QtCore.QRect(200, 220, 170, 21))
+        self.remember_me.setStyleSheet("background-color: white")
+        self.remember_me.setObjectName("checkBox")
+        self.show_password = QtWidgets.QCheckBox(self.centralwidget)
+        self.show_password.setGeometry(QtCore.QRect(200, 260, 170, 21))
+        self.show_password.setStyleSheet("background-color: white")
+        self.show_password.setObjectName("checkBox_3")
         MainWindow.setCentralWidget(self.centralwidget)
 
         self.retranslateUi(MainWindow)
@@ -55,11 +67,26 @@ class Ui_MainWindow(object):
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
-        self.label.setText(_translate("MainWindow", "Телефонная книга"))
-        self.lineEdit.setInputMask(_translate("MainWindow", "имя пользователя"))
-        self.lineEdit_2.setInputMask(_translate("MainWindow", "пароль"))
-        self.pushButton.setText(_translate("MainWindow", "Войти"))
-        self.pushButton_2.setText(_translate("MainWindow", "Регистрация"))
-        self.pushButton_3.setText(_translate("MainWindow", "Отмена"))
-        self.checkBox.setText(_translate("MainWindow", "Запомнить меня"))
-        self.checkBox_3.setText(_translate("MainWindow", "Показать пароль"))
+        self.label_app_name.setText(_translate("MainWindow", "Телефонная книга"))
+        # self.login.setInputMask(_translate("MainWindow", "имя пользователя"))
+        # self.password.setInputMask(_translate("MainWindow", "пароль"))
+        self.signin.setText(_translate("MainWindow", "Войти"))
+        self.register.setText(_translate("MainWindow", "Регистрация"))
+        self.cancel.setText(_translate("MainWindow", "Отмена"))
+        self.remember_me.setText(_translate("MainWindow", "Запомнить меня"))
+        self.show_password.setText(_translate("MainWindow", "Показать пароль"))
+
+
+class Book_call(QtWidgets.QMainWindow):
+    def __init__(self):
+        super(Book_call, self).__init__()
+        self.ui = Ui_MainWindow()
+        self.ui.setupUi(self)
+        self.init_UI()
+        print(self.ui.login.text())
+        print(self.ui.password.text())
+
+    def init_UI(self):
+        self.setWindowTitle('Телефонная книга')
+        self.ui.login.setPlaceholderText('имя пользователя')
+        self.ui.password.setPlaceholderText('пароль')

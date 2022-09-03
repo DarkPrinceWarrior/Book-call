@@ -2,10 +2,9 @@ from PyQt5 import QtWidgets
 
 from app.controllers import selectAll
 from app.models import db_setup
-from PyQt5.QtWidgets import QApplication, QMainWindow
 import sys
 
-from app.ui_templates.templates import Ui_MainWindow
+from app.ui_templates.templates import Ui_MainWindow, Book_call
 
 
 def main():
@@ -16,12 +15,17 @@ def main():
 
 
 def app_gui():
-    app = QtWidgets.QApplication(sys.argv)
-    MainWindow = QtWidgets.QMainWindow()
-    ui = Ui_MainWindow()
-    ui.setupUi(MainWindow)
-    MainWindow.show()
+    app = QtWidgets.QApplication([])
+    ui = Book_call()
+    ui.show()
     sys.exit(app.exec_())
+
+    # app = QtWidgets.QApplication(sys.argv)
+    # MainWindow = QtWidgets.QMainWindow()
+    # ui = Ui_MainWindow()
+    # ui.setupUi(MainWindow)
+    # MainWindow.show()
+    # sys.exit(app.exec_())
 
 
 if __name__ == '__main__':
