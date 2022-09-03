@@ -63,18 +63,33 @@ class Ui_register_window(object):
         _translate = QtCore.QCoreApplication.translate
         register_window.setWindowTitle(_translate("register_window", "MainWindow"))
         self.label_app_name.setText(_translate("register_window", "Регистрация"))
-        self.login.setText(_translate("register_window", "имя пользователя"))
-        self.password.setText(_translate("register_window", "пароль"))
-        self.confirm_password.setText(_translate("register_window", "подтвердите пароль"))
         self.okey.setText(_translate("register_window", "Ок"))
         self.cancel.setText(_translate("register_window", "Отмена"))
 
 
-if __name__ == "__main__":
-    import sys
-    app = QtWidgets.QApplication(sys.argv)
-    register_window = QtWidgets.QMainWindow()
-    ui = Ui_register_window()
-    ui.setupUi(register_window)
-    register_window.show()
-    sys.exit(app.exec_())
+class RegisterCall(QtWidgets.QMainWindow):
+    def __init__(self):
+        super(RegisterCall, self).__init__()
+        self.ui = Ui_register_window()
+        self.ui.setupUi(self)
+        self.init_UI()
+
+    def init_UI(self):
+        self.setWindowTitle('Окно регистрации')
+        self.ui.login.setPlaceholderText('имя пользователя')
+        self.ui.password.setPlaceholderText('пароль')
+        self.ui.confirm_password.setPlaceholderText('подтвердите пароль')
+        # post data to db
+        self.ui.cancel.clicked.connect(self.go_back_to_main_from_register)
+
+    def go_back_to_main_from_register(self):
+        pass
+
+# if __name__ == "__main__":
+#     import sys
+#     app = QtWidgets.QApplication(sys.argv)
+#     register_window = QtWidgets.QMainWindow()
+#     ui = Ui_register_window()
+#     ui.setupUi(register_window)
+#     register_window.show()
+#     sys.exit(app.exec_())

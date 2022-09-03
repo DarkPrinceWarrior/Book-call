@@ -1,7 +1,7 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtGui import QIcon
 
-from app.py_templates.register_screen_ui import Ui_register_window
+from app.py_templates.register_screen_ui import Ui_register_window, RegisterCall
 
 
 class Ui_MainWindow(object):
@@ -98,8 +98,6 @@ class Ui_MainWindow(object):
 class Book_call(QtWidgets.QMainWindow):
     def __init__(self):
         super(Book_call, self).__init__()
-        # to open register window
-        self.register_window = QtWidgets.QMainWindow()
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
         self.init_UI()
@@ -121,9 +119,8 @@ class Book_call(QtWidgets.QMainWindow):
         print(self.ui.password.text())
 
     def register_user(self):
-        self.ui = Ui_register_window()
-        self.ui.setupUi(self.register_window)
-        self.register_window.show()
+        self.ui = RegisterCall()
+        self.ui.show()
 
 
 
