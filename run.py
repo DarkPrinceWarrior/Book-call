@@ -4,7 +4,7 @@ from app.controllers import selectAll
 from app.models import db_setup
 import sys
 
-from app.ui_templates.templates import Ui_MainWindow, Book_call
+from app.py_templates.templates import Book_call
 
 
 def main():
@@ -16,6 +16,7 @@ def main():
 
 def app_gui():
     app = QtWidgets.QApplication([])
+    app.setStyle("Fusion")
     ui = Book_call()
     ui.show()
     sys.exit(app.exec_())
