@@ -1,6 +1,8 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtGui import QIcon
 
+from app.py_templates.register_screen_ui import Ui_register_window
+
 
 class Ui_MainWindow(object):
 
@@ -96,6 +98,8 @@ class Ui_MainWindow(object):
 class Book_call(QtWidgets.QMainWindow):
     def __init__(self):
         super(Book_call, self).__init__()
+        # to open register window
+        self.register_window = QtWidgets.QMainWindow()
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
         self.init_UI()
@@ -106,6 +110,7 @@ class Book_call(QtWidgets.QMainWindow):
         self.ui.password.setPlaceholderText('пароль')
         self.ui.signin.clicked.connect(self.login_app)
         self.ui.cancel.clicked.connect(self.logout_app)
+        self.ui.register_2.clicked.connect(self.register_user)
 
     def logout_app(self):
         self.ui.login.setText("")
@@ -114,3 +119,11 @@ class Book_call(QtWidgets.QMainWindow):
     def login_app(self):
         print(self.ui.login.text())
         print(self.ui.password.text())
+
+    def register_user(self):
+        self.ui = Ui_register_window()
+        self.ui.setupUi(self.register_window)
+        self.register_window.show()
+
+
+
