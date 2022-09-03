@@ -68,8 +68,6 @@ class Ui_MainWindow(object):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
         self.label_app_name.setText(_translate("MainWindow", "Телефонная книга"))
-        # self.login.setInputMask(_translate("MainWindow", "имя пользователя"))
-        # self.password.setInputMask(_translate("MainWindow", "пароль"))
         self.signin.setText(_translate("MainWindow", "Войти"))
         self.register.setText(_translate("MainWindow", "Регистрация"))
         self.cancel.setText(_translate("MainWindow", "Отмена"))
@@ -83,10 +81,14 @@ class Book_call(QtWidgets.QMainWindow):
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
         self.init_UI()
-        print(self.ui.login.text())
-        print(self.ui.password.text())
 
     def init_UI(self):
         self.setWindowTitle('Телефонная книга')
         self.ui.login.setPlaceholderText('имя пользователя')
         self.ui.password.setPlaceholderText('пароль')
+        self.ui.signin.clicked.connect(self.show_inf)
+
+
+    def show_inf(self):
+        print(self.ui.login.text())
+        print(self.ui.password.text())
