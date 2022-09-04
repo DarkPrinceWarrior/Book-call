@@ -10,6 +10,8 @@
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 
+from app.controllers import register_user
+
 
 class Ui_register_window(object):
     def setupUi(self, register_window):
@@ -30,30 +32,36 @@ class Ui_register_window(object):
         self.label_app_name.setStyleSheet("background-color: #FFFFE0")
         self.label_app_name.setObjectName("label_app_name")
         self.formLayout.setWidget(0, QtWidgets.QFormLayout.SpanningRole, self.label_app_name)
+        self.password = QtWidgets.QLineEdit(self.centralwidget)
+        self.password.setStyleSheet("background-color: #FFFFFF")
+        self.password.setText("")
+        self.password.setObjectName("password")
+        self.formLayout.setWidget(3, QtWidgets.QFormLayout.SpanningRole, self.password)
+        self.confirm_password = QtWidgets.QLineEdit(self.centralwidget)
+        self.confirm_password.setStyleSheet("background-color: #FFFFFF")
+        self.confirm_password.setText("")
+        self.confirm_password.setObjectName("confirm_password")
+        self.formLayout.setWidget(4, QtWidgets.QFormLayout.SpanningRole, self.confirm_password)
+        self.date_birth = QtWidgets.QDateEdit(self.centralwidget)
+        self.date_birth.setStyleSheet("background-color: #FFFFFF")
+        self.date_birth.setObjectName("date_birth")
+        self.formLayout.setWidget(5, QtWidgets.QFormLayout.SpanningRole, self.date_birth)
+        self.okey = QtWidgets.QPushButton(self.centralwidget)
+        self.okey.setStyleSheet("background-color: rgb(0, 170, 0)")
+        self.okey.setObjectName("okey")
+        self.formLayout.setWidget(6, QtWidgets.QFormLayout.LabelRole, self.okey)
+        self.cancel = QtWidgets.QPushButton(self.centralwidget)
+        self.cancel.setStyleSheet("background-color: rgb(255, 0, 0)")
+        self.cancel.setObjectName("cancel")
+        self.formLayout.setWidget(6, QtWidgets.QFormLayout.FieldRole, self.cancel)
         self.login = QtWidgets.QLineEdit(self.centralwidget)
         self.login.setStyleSheet("background-color: #FFFFFF")
         self.login.setObjectName("login")
         self.formLayout.setWidget(1, QtWidgets.QFormLayout.SpanningRole, self.login)
-        self.password = QtWidgets.QLineEdit(self.centralwidget)
-        self.password.setStyleSheet("background-color: #FFFFFF")
-        self.password.setObjectName("password")
-        self.formLayout.setWidget(2, QtWidgets.QFormLayout.SpanningRole, self.password)
-        self.confirm_password = QtWidgets.QLineEdit(self.centralwidget)
-        self.confirm_password.setStyleSheet("background-color: #FFFFFF")
-        self.confirm_password.setObjectName("confirm_password")
-        self.formLayout.setWidget(3, QtWidgets.QFormLayout.SpanningRole, self.confirm_password)
-        self.date_birth = QtWidgets.QDateEdit(self.centralwidget)
-        self.date_birth.setStyleSheet("background-color: #FFFFFF")
-        self.date_birth.setObjectName("date_birth")
-        self.formLayout.setWidget(4, QtWidgets.QFormLayout.SpanningRole, self.date_birth)
-        self.okey = QtWidgets.QPushButton(self.centralwidget)
-        self.okey.setStyleSheet("background-color: rgb(0, 170, 0)")
-        self.okey.setObjectName("okey")
-        self.formLayout.setWidget(5, QtWidgets.QFormLayout.LabelRole, self.okey)
-        self.cancel = QtWidgets.QPushButton(self.centralwidget)
-        self.cancel.setStyleSheet("background-color: rgb(255, 0, 0)")
-        self.cancel.setObjectName("cancel")
-        self.formLayout.setWidget(5, QtWidgets.QFormLayout.FieldRole, self.cancel)
+        self.email = QtWidgets.QLineEdit(self.centralwidget)
+        self.email.setStyleSheet("background-color: #FFFFFF")
+        self.email.setObjectName("email")
+        self.formLayout.setWidget(2, QtWidgets.QFormLayout.SpanningRole, self.email)
         register_window.setCentralWidget(self.centralwidget)
 
         self.retranslateUi(register_window)
@@ -77,13 +85,26 @@ class RegisterCall(QtWidgets.QMainWindow):
     def init_UI(self):
         self.setWindowTitle('Окно регистрации')
         self.ui.login.setPlaceholderText('имя пользователя')
+        self.ui.email.setPlaceholderText('адрес электронной почты')
         self.ui.password.setPlaceholderText('пароль')
         self.ui.confirm_password.setPlaceholderText('подтвердите пароль')
-        # post data to db
-        self.ui.cancel.clicked.connect(self.go_back_to_main_from_register)
 
-    def go_back_to_main_from_register(self):
-        pass
+        self.ui.cancel.clicked.connect(self.go_back_to_main)
+
+        # post data to db
+        self.ui.okey.clicked.connect(self.post_user_data)
+
+    def go_back_to_main(self):
+        self.close()
+
+    def post_user_data(self):
+        dict_user = dict()
+        dict_user["login"] = self.ui.login.text()
+        dict_user["email"] = self.ui.email.text()
+        dict_user["password"] = self.ui.password.text()
+        register_user(dict_user)
+
+
 
 # if __name__ == "__main__":
 #     import sys

@@ -26,12 +26,13 @@ class Users(Base):
     login = Column(String(255), nullable=False,unique=True)
     email = Column(String(255), nullable=False, unique=True)
     password = Column(String(255), nullable=False)
-    user_token = Column(String(255), nullable=False, unique=True)
     role_id = Column(Integer, ForeignKey('role.role_id'), nullable=False)
 
     def dictionarize(self):
         return {
             "user_id": self.user_id,
-            "user_token": self.user_token,
+            "login": self.login,
+            "email": self.email,
+            "password": self.password,
             "role_id": self.role_id
         }
